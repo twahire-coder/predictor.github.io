@@ -1,65 +1,101 @@
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>aviator predictor</title>
+    <title>aviator predictor</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	
-	<link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-	</head>
-	<body>
-	<section class="ftco-section">
-		<div class="container bg-danger">
-			
-			
-			<div class="row justify-content-center bg-dark">
-				<div class="col-md-6 col-lg-4 bg-danger" >
-					<div class="login-wrap py-5 bg-danger">
-		      	<div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/bg.jpg);"></div>
-		      	<h3 class="text-center mb-0">Welcome</h3>
-		      	<p class="text-center">Sign up in by entering the sign up information  below</p>
-						<form action="#" class="login-form">
-                            <div class="form-group">
-                                <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-user"></span></div>
-                                <input type="text" class="form-control" placeholder="Username" required id="user">
-                            </div>
-		      		<div class="form-group">
-		      			<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-user"></span></div>
-		      			<input type="text" class="form-control" placeholder="Email" required id="email">
-		      		</div>
-	            <div class="form-group">
-	            	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-lock"></span></div>
-	              <input type="password" class="form-control" placeholder="Password" required id="pass">
-	            </div>
-	            
-	            </div>
-	            <div class="form-group">
-	            	<a href="country/country.html" class="btn form-control btn-danger rounded submit px-3">Sign Up</button>
-	            </div>
-	          </form>
-	          <div class="w-100 text-center mt-4 text">
-	          	<p class="mb-0">Do you have an account?</p>
-		          <a href="index.html" class="mb-0">Login</a>
-	          </div>
-	        </div>
-				</div>
-			</div>
-		</div>
-	</div>
-	</section>
-	
+    <link rel="stylesheet" href="css/style.css">
 
-		
+  </head>
+  <body>
+    <section class="ftco-section">
+      <div class="container bg-danger">
+        <div class="row justify-content-center bg-dark">
+          <div class="col-md-6 col-lg-4 bg-danger">
+            <div class="login-wrap py-5 bg-danger">
+              <div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/bg.jpg);"></div>
+              <h3 class="text-center mb-0">Welcome</h3>
+              <p class="text-center">Sign up by entering the sign up information below</p>
+              <form id="signupForm" class="login-form needs-validation" novalidate>
+                <div class="form-group">
+                  <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-user"></span></div>
+                  <input type="text" class="form-control" placeholder="Username" id="user" required pattern="^[a-zA-Z0-9_]+$" title="Username must contain only letters, numbers, and underscores.">
+                  <div class="invalid-feedback bg-light">Please enter a valid username.</div>
+                </div>
+                <div class="form-group">
+                  <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-envelope"></span></div>
+                  <input type="email" class="form-control" placeholder="Email" id="email" required>
+                  <div class="invalid-feedback bg-light">Please enter a valid email.</div>
+                </div>
+                <div class="form-group">
+                  <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-lock"></span></div>
+                  <input type="password" class="form-control" placeholder="Password" id="pass" required minlength="8" title="Password must be at least 8 characters.">
+                  <div class="invalid-feedback bg-light">Password must be at least 8 characters.</div>
+                </div>
+                <div class="form-group">
+                  <button type="submit" class="btn btn-danger rounded submit px-3 w-100">Sign Up</button>
+                </div>
+              </form>
+              <div class="w-100 text-center mt-4 text">
+                <p class="mb-0">Do you have an account?</p>
+                <a href="index.html" class="mb-0">Login</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-	<script src="js/jquery.min.js"></script>
-  <script src="js/popper.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/main.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
 
-	</body>
+    <script>
+      (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+          const forms = document.querySelectorAll('.needs-validation');
+
+          forms.forEach(form => {
+            form.addEventListener('submit', function(event) {
+              if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+                const invalidInput = form.querySelector('.form-control:invalid');
+                if (invalidInput) {
+                  invalidInput.focus();
+                }
+              } else {
+                event.preventDefault(); // Prevent form from actually submitting
+
+                const username = document.getElementById('user').value;
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('pass').value;
+
+                const userData = {
+                  username: username,
+                  email: email,
+                  password: password
+                };
+
+                localStorage.setItem('userData', JSON.stringify(userData));
+
+                // Redirect after successful signup and local storage save
+                window.location.href = 'country/country.html';
+
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+    </script>
+
+  </body>
 </html>

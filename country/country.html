@@ -9,10 +9,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Country</title>
 
-    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
-    <!-- Css Styles -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
@@ -21,19 +19,102 @@
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+
+    <style>
+        /* Responsive Styles */
+        .featured__item {
+            margin-bottom: 30px;
+        }
+
+        .featured__item__pic {
+            height: 300px; /* Adjust as needed */
+            background-size: cover; /* or contain, depending on your preference */
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative; /* For positioning the overlay */
+            overflow: hidden; /* Hide content that overflows the container */
+        }
+
+        .shop-body {
+            position: absolute; /* Overlay the image */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+            color: white;
+            display: flex;
+            flex-direction: column; /* Arrange content vertically */
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center; /* Center text */
+        }
+
+        .shop-body h3 {
+            margin-bottom: 15px; /* Space between heading and button */
+        }
+
+        .cta-btn {
+            background-color: #dc3545; /* Or any color you prefer */
+            border: none;
+            color: white;
+            padding: 12px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            white-space: nowrap; /* Prevent button text from wrapping */
+        }
+
+        .cta-btn:hover {
+            background-color: #c12a36;
+        }
+
+        /* Media Queries */
+        @media (max-width: 992px) { /* Adjust breakpoint as needed */
+            .col-lg-3 {
+                flex: 0 0 50%; /* Two columns on medium screens */
+                max-width: 50%;
+            }
+            .featured__item__pic{
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .col-lg-3 {
+                flex: 0 0 100%; /* One column on small screens */
+                max-width: 100%;
+            }
+             .featured__item__pic{
+                height: 200px;
+            }
+            .shop-body h3{
+                font-size: 1.3rem;
+            }
+        }
+        @media (max-width: 576px) {
+            .featured__item__pic{
+                height: 150px;
+            }
+            .shop-body h3{
+                font-size: 1.1rem;
+            }
+            .cta-btn{
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <!-- Page Preloder --> <div id="preloder">
-        <div class="loader"></div>
-    </div>
 
-    
-    
-
-    
-        
-   
     <section class="featured spad">
         <div class="container">
             <div class="row">
@@ -41,78 +122,55 @@
                     <div class="section-title">
                         <h2>CHOOSE COUNTRY</h2>
                     </div>
-                
+                </div>
+            </div>
             <div class="row featured__filter">
-                
+
                 <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
                     <div class="featured__item">
                         <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-1.jpg">
-                            <div class="shop-body text-center mt-5">
-								<h3>RWANDA</h3>
-								<a href="bettingRW/pricing.html" class="cta-btn text-danger text-lg">Get started <i class="fa fa-arrow-circle-right"></i></a>
-							</div>
-                        </div>
-                        
-                            
+                            <div class="shop-body">
+                                <h3>RWANDA</h3>
+                                <a href="bettingRW/pricing.html" class="cta-btn">Get started <i class="fa fa-arrow-circle-right"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood">
                     <div class="featured__item">
                         <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-2.jpg">
-                            <div class="shop-body text-center mt-5">
-								<h3 class="text-white">Kenya</h3>
-								<a href="bettingke/pricing.html" class="cta-btn text-dark text-lg">Get started <i class="fa fa-arrow-circle-right"></i></a>
-							</div>
+                            <div class="shop-body">
+                                <h3>Kenya</h3>
+                                <a href="bettingke/pricing.html" class="cta-btn">Get started <i class="fa fa-arrow-circle-right"></i></a>
+                            </div>
                         </div>
-                        
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fresh-meat">
                     <div class="featured__item">
                         <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-3.jpg">
-                            <div class="shop-body text-center mt-5">
-								<h3>TANZANIA</h3>
-								<a href="bettingta/pricing.html" class="cta-btn text-danger text-lg">Get started <i class="fa fa-arrow-circle-right"></i></a>
-							</div>
+                            <div class="shop-body">
+                                <h3>TANZANIA</h3>
+                                <a href="bettingta/pricing.html" class="cta-btn">Get started <i class="fa fa-arrow-circle-right"></i></a>
+                            </div>
                         </div>
-                        
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood oranges">
                     <div class="featured__item">
                         <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-4.jpg">
-                            <div class="shop-body text-center mt-5">
-								<h3>UGANDA</h3>
-								<a href="bettingug/pricing.html" class="cta-btn text-dark text-lg">Get started <i class="fa fa-arrow-circle-right"></i></a>
-							</div>
-                        </div>
-                        
-                    </div>
-                </div>
-                
-    
-
-   
-    <footer class="footer spad">
-        <div class="container"><div class="contact-whatsapp">
-            <a href="https://wa.me/250739121651" class="btn btn-success btn-block" target="_blank">
-                <i class="fa fa-whatsapp"></i> Contact on WhatsApp 0732200441
-            </a>
-        </div>
-            
-                        <div class="footer__copyright__payment">
-                          <a href="#"></a>  <i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+                            <div class="shop-body">
+                                <h3>UGANDA</h3>
+                                <a href="bettingug/pricing.html" class="cta-btn">Get started <i class="fa fa-arrow-circle-right"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                </div>
         </div>
-    </footer>
-	
- 
+    </section>
 
-    <!-- Js Plugins -->
+
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.nice-select.min.js"></script>
@@ -121,8 +179,6 @@
     <script src="js/mixitup.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
-
-
 
 </body>
 
