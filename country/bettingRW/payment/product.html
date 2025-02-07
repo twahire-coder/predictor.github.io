@@ -160,13 +160,39 @@
             </div>
         </div>
     </section>
-	<div id="payment-checking" style="display:none;">
-        <h2>Checking for Payment...</h2>
-        <div id="timer">20:00</div>
-    </div>
+    <a href="paid.html" class="floating-button" target="_blank">
+        <i class="fas fa-external-link-alt"></i> Go to Demo account
+    </a>
 
     <style>
         /* ... (previous CSS styles) ... */
+        .floating-button {
+            position: fixed; /* Stay in place */
+            bottom: 20px; /* Distance from the bottom */
+            right: 20px; /* Distance from the right */
+            z-index: 1050; /* Ensure it's above other elements */
+            background-color: #dc3545; /* Red background */
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            text-decoration: none; /* Remove underline from link */
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Add shadow */
+            transition: background-color 0.3s ease; /* Smooth transition */
+        }
+
+        .floating-button:hover {
+            background-color: #c82333; /* Darker red on hover */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .floating-button {
+                bottom: 10px; /* Adjust spacing on smaller screens */
+                right: 10px;
+                font-size: 16px; /* Adjust font size */
+                padding: 12px 20px;
+            }
+        }
 
         footer {
             background-color: #f8f9fa;
@@ -244,6 +270,9 @@
     <script src="js/nouislider.min.js"></script>
     <script src="js/jquery.zoom.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
 
