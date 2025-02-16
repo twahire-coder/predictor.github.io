@@ -3,7 +3,7 @@ see<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demo Predictor</title>
+    <title>Predictor</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
@@ -184,10 +184,10 @@ see<!DOCTYPE html>
             circleIcon.style.opacity = 0;
 
             setTimeout(() => {
-                let prediction = Math.random() * 100;
+                let prediction = Math.random() * 20;
                 prediction = parseFloat(prediction.toFixed(2));
 
-                currentOdd = parseFloat((Math.random() *2 ).toFixed(2));
+                currentOdd = parseFloat((Math.random() *3 ).toFixed(2));
 
                 predictionElement.textContent = prediction;
                 circleIcon.textContent = currentOdd + "X";
