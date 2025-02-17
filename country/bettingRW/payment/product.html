@@ -3,51 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Confirmation</title>
+    <title>Payment Request Confirmation</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-        /*... (your existing CSS styles)... */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .loading-icon {
+            font-size: 3rem;
+            animation: spin 2s linear infinite;
+        }
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
     </style>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script type="text/javascript">
-        (function(){
-            // Use your provided public key here
-            emailjs.init("ng83DdYuvt_QjUH3s");
-        })();
-    </script>
 </head>
 <body>
     <div class="container">
-        <h1>Payment Confirmation</h1>
-        <p>Enter your phone number to proceed with payment:</p>
-        <input type="text" id="phoneNumber" placeholder="e.g., 250781234567">
-        <button id="payButton">Pay</button>
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card text-center p-4">
+                    <div class="loading-icon">
+                        <i class="fas fa-spinner"></i>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Thank you for making a payment request!</h5>
+                        <p class="card-text">Please wait a little bit to enter your PIN. It can take <span id="countdown">50</span> minutes to receive the payment request.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        document.getElementById('payButton').addEventListener('click', function() {
-            const phoneNumber = document.getElementById('phoneNumber').value;
+        let countdown = 50;
+        const countdownDisplay = document.getElementById('countdown');
 
-            if (!phoneNumber) {
-                alert("Please enter a phone number.");
-                return;
+        function updateCountdown() {
+            countdownDisplay.textContent = countdown;
+            if (countdown > 0) {
+                countdown--;
+                setTimeout(updateCountdown, 60000); // 1 minute
+            } else {
+                countdownDisplay.textContent = "0";
             }
+        }
 
-            const templateParams = {
-                to_name: "Olivier",
-                message: "Payment request from: " + phoneNumber,
-                to_email: "shimwaolivier7@gmail.com"
-            };
-
-            // Use your provided service ID and template ID here
-            emailjs.send('service_q6wxgpw', 'template_p0of43y', templateParams)
-              .then(function(response) {
-                    console.log('SUCCESS!', response.status, response.text);
-                    alert("Please wait a little moment to enter your PIN. It can take 0-50 minutes.");
-                }, function(error) {
-                    console.error('FAILED...', error);
-                    alert("Email sending failed. Please try again.");
-                });
-        });
+        updateCountdown();
     </script>
 </body>
 </html>
