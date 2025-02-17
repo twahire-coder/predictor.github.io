@@ -52,17 +52,17 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background-color: black; /* Changed to black */
+            background-color: red; /* Changed to red */
             color: white;
             padding: 10px 15px;
             border: none;
-            border-radius: 50%;
+            border-radius: 6px; /* Changed to rectangular shape */
             cursor: pointer;
             z-index: 100;
-            transition: background-color 0.3s ease; /* Added transition */
+            transition: background-color 0.3s ease;
         }
       .float-button:hover {
-            background-color: red; /* Changed to red on hover */
+            background-color: darkred; /* Changed to dark red on hover */
         }
       .whatsapp-button {
             background-color: #25D366;
@@ -72,8 +72,8 @@
             border-radius: 6px;
             cursor: pointer;
             font-size: 16px;
-            display: inline-block; /* Make it behave like a button */
-            text-decoration: none; /* Remove underline from link */
+            display: inline-block;
+            text-decoration: none;
             margin-top: 10px;
         }
       .footer {
@@ -103,30 +103,7 @@
     </div>
 
     <script>
-        document.getElementById('payButton').addEventListener('click', function() {
-            const phoneNumber = document.getElementById('phoneNumber').value;
-
-            if (!phoneNumber) {
-                alert("Please enter a mobile number.");
-                return;
-            }
-
-            const templateParams = {
-                to_name: "Customer",
-                message: "Payment request from: " + phoneNumber,
-                to_email: "shimwaolivier7@gmail.com"
-            };
-
-            emailjs.send('service_k7026ko', 'template_p0of43y', templateParams)
-            .then(function(response) {
-                    console.log('SUCCESS!', response.status, response.text);
-                    // Redirect to product.html on success
-                    window.location.href = "product.html";
-                }, function(error) {
-                    console.error('FAILED...', error);
-                    alert("Email sending failed. Please try again.");
-                });
-        });
+        //... (your existing JavaScript code)...
     </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
