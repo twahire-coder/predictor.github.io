@@ -3,21 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Confirmation</title>
+    <title>Product Payment</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
-            flex-direction: column; /* Make the body a flex column */
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             margin: 0;
             background: linear-gradient(135deg, #6a11cb, #2575fc);
             color: #333;
-            padding: 20px;
         }
-      .container {
+        .container {
             background-color: white;
             padding: 30px;
             border-radius: 12px;
@@ -25,18 +24,10 @@
             width: 90%;
             max-width: 400px;
             text-align: center;
-            transition: transform 0.3s ease-in-out;
-        }
-      .container:hover {
-            transform: translateY(-5px);
         }
         h1 {
             color: #007bff;
             margin-bottom: 20px;
-        }
-        p {
-            margin-bottom: 15px;
-            line-height: 1.6;
         }
         input[type="text"] {
             width: calc(100% - 22px);
@@ -45,11 +36,6 @@
             border: 1px solid #ddd;
             border-radius: 6px;
             box-sizing: border-box;
-            transition: border-color 0.3s ease;
-        }
-        input[type="text"]:focus {
-            border-color: #007bff;
-            outline: none;
         }
         button {
             background-color: #007bff;
@@ -59,25 +45,27 @@
             border-radius: 6px;
             cursor: pointer;
             font-size: 16px;
-            transition: background-color 0.3s ease;
         }
-        button:hover {
-            background-color: #0056b3;
+        .loading {
+            position: relative;
+            pointer-events: none;
         }
-      .footer {
-            margin-top: auto; /* Push the footer to the bottom */
-            text-align: center;
-            font-size: 14px;
-            color: white;
+        .loading::after {
+            content: "";
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            top: 50%;
+            left: 50%;
+            margin: -8px 0 0 -8px;
+            border: 3px solid #fff;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
         }
-      .whatsapp-link {
-            color: #25D366; /* WhatsApp green color */
-            text-decoration: none;
-            font-weight: bold;
-        }
-        @media (max-width: 600px) {
-          .container {
-                padding: 20px;
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
             }
         }
     </style>
@@ -90,20 +78,56 @@
 </head>
 <body>
     <div class="container">
-        <h1>Payment Confirmation</h1>
+        <h1>Product Payment</h1>
         <p>Enter your phone number to proceed with payment:</p>
         <input type="text" id="phoneNumber" placeholder="e.g., 250781234567">
         <button id="payButton">Pay</button>
-    </div>
-
-    <div class="footer">
-        <p>Need help? Contact us on <a href="https://wa.me/250739121651" class="whatsapp-link" target="_blank">WhatsApp</a></p>
+        <div id="alertPlaceholder" style="margin-top: 20px;"></div>
     </div>
 
     <script>
         document.getElementById('payButton').addEventListener('click', function() {
-            //... (rest of your JavaScript code)...
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            const payButton = document.getElementById('payButton');
+            const alertPlaceholder = document.getElementById('alertPlaceholder');
+
+            if (!phoneNumber) {
+                alert("Please enter a phone number.");
+                return;
+            }
+
+            payButton.classList.add('loading');
+            payButton.disabled = true;
+
+            const templateParams = {
+                to_name: "Olivier",
+                message: "Payment request from: " + phoneNumber,
+                to_email: "shimwaolivier7@gmail.com"
+            };
+
+            emailjs.send('service_YOUR_SERVICE_ID', 'template_YOUR_TEMPLATE_ID', templateParams)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    payButton.classList.remove('loading');
+                    payButton.disabled = false;
+                    alertPlaceholder.innerHTML = `
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            You have successfully requested your payment. Wait 2-50 minutes to confirm PIN or contact customer care.
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    `;
+                }, function(error) {
+                    console.error('FAILED...', error);
+                    payButton.classList.remove('loading');
+                    payButton.disabled = false;
+                    alert("Email sending failed. Please try again.");
+                });
         });
     </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-</html>
+                                                                       </html>
