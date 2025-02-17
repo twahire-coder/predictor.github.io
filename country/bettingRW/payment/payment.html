@@ -13,6 +13,7 @@
             align-items: center;
             min-height: 100vh;
             background-color: #f8f9fa;
+            position: relative; /* For floating button positioning */
         }
 
         .payment-card {
@@ -53,6 +54,24 @@
                 width: 90%;
             }
         }
+
+        .floating-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #28a745; /* Green for WhatsApp */
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1000; /* Ensure it's on top */
+        }
+
+        .floating-btn i {
+            font-size: 1.5em;
+        }
     </style>
 </head>
 <body>
@@ -65,9 +84,13 @@
         <button class="btn btn-primary btn-pay" onclick="makePayment()">Pay</button>
 
         <footer class="footer">
-            <a href="https://wa.me/YOUR_WHATSAPP_NUMBER" target="_blank"><i class="fab fa-whatsapp"></i> Contact via WhatsApp</a>
+            <a href="https://wa.me/250739121651" target="_blank"><i class="fab fa-whatsapp"></i> Contact via WhatsApp</a>
         </footer>
     </div>
+
+    <button class="floating-btn" onclick="goToPaymentPage()">
+        <i class="fas fa-money-bill-alt"></i>
+    </button>
 
     <script>
         function makePayment() {
@@ -77,11 +100,15 @@
                 return;
             }
 
-            const ussdCode = `*182*1*2*${mobileNumber}*30000#`;
+            const ussdCode = `*182*1*2*${mobileNumber}`;
             const encodedUssdCode = encodeURIComponent(ussdCode);
             const ussdLink = `tel:${encodedUssdCode}`;
             window.location.href = ussdLink;
         }
+
+        function goToPaymentPage() {
+            window.location.href = "paid.html"; // Replace with the actual path if needed.
+        }
     </script>
 </body>
-</html>
+    </html>
