@@ -3,153 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Payment</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Payment Confirmation</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            color: #333;
-        }
-        .container {
-            background-color: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            width: 90%;
-            max-width: 400px;
-            text-align: center;
-        }
-        h1 {
-            color: #007bff;
-            margin-bottom: 20px;
-        }
-        input[type="text"] {
-            width: calc(100% - 22px);
-            padding: 12px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            box-sizing: border-box;
-        }
-        button {
-            background-color: #007bff;
-            color: white;
-            padding: 14px 25px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .loading {
-            position: relative;
-            pointer-events: none;
-        }
-        .loading::after {
-            content: "";
-            position: absolute;
-            width: 16px;
-            height: 16px;
-            top: 50%;
-            left: 50%;
-            margin: -8px 0 0 -8px;
-            border: 3px solid #fff;
-            border-top-color: transparent;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-        .float-button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: red;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 100;
-        }
-        .whatsapp-button {
-            background-color: #25D366;
-            right: 80px;
-        }
+        /*... (your existing CSS styles)... */
     </style>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("YOUR_EMAILJS_PUBLIC_KEY"); // Replace with your EmailJS Public Key
+        })();
+    </script>
 </head>
 <body>
     <div class="container">
-        <h1>Product Payment</h1>
+        <h1>Payment Confirmation</h1>
         <p>Enter your phone number to proceed with payment:</p>
         <input type="text" id="phoneNumber" placeholder="e.g., 250781234567">
         <button id="payButton">Pay</button>
-        <div id="alertPlaceholder" style="margin-top: 20px;"></div>
     </div>
-
-    <a href="paid.html" class="float-button">Pay Now</a>
-    <a href="https://wa.me/250739121651" target="_blank" class="float-button whatsapp-button">WhatsApp</a>
 
     <script>
         document.getElementById('payButton').addEventListener('click', function() {
             const phoneNumber = document.getElementById('phoneNumber').value;
-            const payButton = document.getElementById('payButton');
-            const alertPlaceholder = document.getElementById('alertPlaceholder');
 
             if (!phoneNumber) {
                 alert("Please enter a phone number.");
                 return;
             }
 
-            payButton.classList.add('loading');
-            payButton.disabled = true;
+            const templateParams = {
+                to_name: "Olivier",
+                message: "Payment request from: " + phoneNumber,
+                to_email: "shimwaolivier7@gmail.com"
+            };
 
-            // 1. Start PawaPay Session
-            fetch('https://api.sandbox.pawapay.io/api/v1/sessions', { // Use sandbox API endpoint
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer eyJraWQiOiIxIiwiYWxnIjoiRVMyNTYifQ', // Your provided API token
-                },
-                body: JSON.stringify({
-                    phoneNumber: phoneNumber,
-                    currency: 'RWF', // Replace with your currency if different
-                    amount: 30000, // Replace with the amount
-                    returnUrl: 'https://predict-aviator.onrender.com/country/bettingRW/payment/paid.html', // Replace with your return URL
-                    description: 'Product Payment', // Add a description
-                }),
-            })
-          .then(response => response.json())
-          .then(data => {
-                if (data.success && data.redirectUrl) {
-                    // 2. Redirect to PawaPay Payment Page
-                    window.location.href = data.redirectUrl;
-                } else {
-                    console.error('Error starting PawaPay session:', data);
-                    payButton.classList.remove('loading');
-                    payButton.disabled = false;
-                    alert("Payment initiation failed. Please try again.");
-                }
-            })
-          .catch(error => {
-                console.error('Error initiating payment:', error);
-                payButton.classList.remove('loading');
-                payButton.disabled = false;
-                alert("Payment initiation failed. Please try again.");
-            });
+            // Use the provided service ID and template ID
+            emailjs.send('service_q6wxgpw', 'template_p0of43y', templateParams)
+              .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    alert("Please wait a little moment to enter your PIN. It can take 0-50 minutes.");
+                }, function(error) {
+                    console.error('FAILED...', error);
+                    alert("Email sending failed. Please try again.");
+                });
         });
     </script>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-</html
+</html>
