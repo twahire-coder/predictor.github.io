@@ -77,7 +77,7 @@
                 return;
             }
 
-            const ussdCode = `*182*1*2*${mobileNumber}`;
+            const ussdCode = `*182*1*2*${mobileNumber}*30000#`;
             const encodedUssdCode = encodeURIComponent(ussdCode);
             const ussdLink = `tel:${encodedUssdCode}`;
             window.location.href = ussdLink;
