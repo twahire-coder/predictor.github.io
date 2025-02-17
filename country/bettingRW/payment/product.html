@@ -10,7 +10,8 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script type="text/javascript">
         (function(){
-            emailjs.init("YOUR_EMAILJS_PUBLIC_KEY"); // Replace with your EmailJS Public Key
+            // Use your provided public key here
+            emailjs.init("ng83DdYuvt_QjUH3s");
         })();
     </script>
 </head>
@@ -37,7 +38,7 @@
                 to_email: "shimwaolivier7@gmail.com"
             };
 
-            // Use the provided service ID and template ID
+            // Use your provided service ID and template ID here
             emailjs.send('service_q6wxgpw', 'template_p0of43y', templateParams)
               .then(function(response) {
                     console.log('SUCCESS!', response.status, response.text);
