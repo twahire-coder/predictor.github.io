@@ -13,7 +13,7 @@
             align-items: center;
             min-height: 100vh;
             background-color: #f8f9fa;
-            position: relative; /* For floating button positioning */
+            position: relative;
         }
 
         .payment-card {
@@ -46,7 +46,7 @@
         }
 
         .footer a {
-            color: #28a745; /* Green for WhatsApp */
+            color: #28a745;
         }
 
         @media (max-width: 576px) {
@@ -59,19 +59,16 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background-color: #28a745; /* Green for WhatsApp */
+            background-color: red;
             color: white;
-            padding: 15px;
-            border-radius: 50%;
+            padding: 10px 20px;
+            border-radius: 5px;
             border: none;
             cursor: pointer;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            z-index: 1000; /* Ensure it's on top */
+            z-index: 1000;
         }
 
-        .floating-btn i {
-            font-size: 1.5em;
-        }
     </style>
 </head>
 <body>
@@ -84,12 +81,12 @@
         <button class="btn btn-primary btn-pay" onclick="makePayment()">Pay</button>
 
         <footer class="footer">
-            <a href="https://wa.me/250739121651" target="_blank"><i class="fab fa-whatsapp"></i> Contact via WhatsApp</a>
+            <a href="https://wa.me/250739121651?text=Can%20you%20help%20me%20for%20assistance%20on%20how%20can%20I%20make%20payment" target="_blank"><i class="fab fa-whatsapp"></i> Contact via WhatsApp</a>
         </footer>
     </div>
 
-    <button class="floating-btn" onclick="goToPaymentPage()">
-        <i class="fas fa-money-bill-alt"></i>
+    <button class="floating-btn" onclick="goToDemoPage()">
+        Open Demo
     </button>
 
     <script>
@@ -106,9 +103,9 @@
             window.location.href = ussdLink;
         }
 
-        function goToPaymentPage() {
-            window.location.href = "paid.html"; // Replace with the actual path if needed.
+        function goToDemoPage() {
+            window.location.href = "file.html"; // Replace with the actual path if needed.
         }
     </script>
 </body>
-    </html>
+</html>
