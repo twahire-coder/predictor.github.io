@@ -1,279 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Payment</title>
-
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Confirmation</title>
     <style>
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column; /* Make the body a flex column */
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: #333;
+            padding: 20px;
         }
-
-        .payment-section {
-            padding: 60px 0;
-            background-color: #f8f9fa; /* Light gray background */
-        }
-
-        .payment-title {
-            margin-bottom: 40px;
-            text-align: center;
-        }
-
-        .payment-box {
-            border: 1px solid #dee2e6; /* Light gray border */
+      .container {
+            background-color: white;
             padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-            background-color: #fff; /* White background */
-            margin-bottom: 30px; /* Spacing between boxes */
-            transition: transform 0.2s; /* Smooth scaling on hover */
-        }
-        .payment-box:hover{
-            transform: scale(1.02);
-        }
-
-        .payment-image {
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 400px;
             text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+      .container:hover {
+            transform: translateY(-5px);
+        }
+        h1 {
+            color: #007bff;
             margin-bottom: 20px;
         }
-
-        .payment-image img {
-            max-width: 150px;
-            height: auto;
+        p {
+            margin-bottom: 15px;
+            line-height: 1.6;
         }
-
-        .payment-method {
-            text-align: center;
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 12px;
             margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
         }
-
-        .payment-info {
-            margin-bottom: 20px;
+        input[type="text"]:focus {
+            border-color: #007bff;
+            outline: none;
         }
-
-        .payment-info label {
-            font-weight: 500;
-            margin-bottom: 5px;
-        }
-
-        .payment-info input[type="text"] {
-            border-radius: 5px;
-            padding: 10px;
-            border: 1px solid #ced4da;
-        }
-
-        .pay-button {
-            text-align: center;
-        }
-
-        .pay-button button {
-            background-color: #007bff; /* Blue button */
+        button {
+            background-color: #007bff;
             color: white;
-            padding: 12px 25px;
+            padding: 14px 25px;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
         }
-
-        .pay-button button:hover {
+        button:hover {
             background-color: #0056b3;
         }
-
-        footer {
-            background-color: #f8f9fa;
-            padding: 20px 0;
+      .footer {
+            margin-top: auto; /* Push the footer to the bottom */
             text-align: center;
-        }
-
-        .whatsapp-button {
-            /* ... (WhatsApp button styles remain the same) */
-        }
-
-        #payment-checking {
-            /* ... (payment checking styles remain the same) */
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-          .payment-box {
-            margin-bottom: 20px; /* Adjust spacing for smaller screens */
-          }
-        }
-    </style>
-</head>
-
-<body>
-
-    <section class="payment-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h2 class="payment-title">Payment Options</h2>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="payment-box">
-                        <div class="payment-image">
-                            <img src="./img/product03.png" alt="MTN Rwanda">
-                        </div>
-                        <div class="payment-method">
-                            <h3>MTN Rwanda</h3>
-                        </div>
-                        <div class="payment-info">
-                            <label for="mtn-number">MTN Number</label>
-                            <input type="text" id="mtn-number" class="form-control" placeholder="Enter MTN number">
-                        </div>
-                        <div class="pay-button">
-                            <button onclick="pay('mtn')">Pay</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="payment-box">
-                        <div class="payment-image">
-                            <img src="./img/product04.png" alt="Airtel Rwanda">
-                        </div>
-                        <div class="payment-method">
-                            <h3>Airtel Rwanda</h3>
-                        </div>
-                        <div class="payment-info">
-                            <label for="airtel-number">Airtel Number</label>
-                            <input type="text" id="airtel-number" class="form-control" placeholder="Enter Airtel number">
-                        </div>
-                        <div class="pay-button">
-                            <button onclick="pay('airtel')">Pay</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <a href="paid.html" class="floating-button" target="_blank">
-        <i class="fas fa-external-link-alt"></i> Go to Demo account
-    </a>
-
-    <style>
-        /* ... (previous CSS styles) ... */
-        .floating-button {
-            position: fixed; /* Stay in place */
-            bottom: 20px; /* Distance from the bottom */
-            right: 20px; /* Distance from the right */
-            z-index: 1050; /* Ensure it's above other elements */
-            background-color: #dc3545; /* Red background */
+            font-size: 14px;
             color: white;
-            padding: 15px 25px;
-            border-radius: 10px;
-            text-decoration: none; /* Remove underline from link */
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Add shadow */
-            transition: background-color 0.3s ease; /* Smooth transition */
         }
-
-        .floating-button:hover {
-            background-color: #c82333; /* Darker red on hover */
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .floating-button {
-                bottom: 10px; /* Adjust spacing on smaller screens */
-                right: 10px;
-                font-size: 16px; /* Adjust font size */
-                padding: 12px 20px;
-            }
-        }
-
-        footer {
-            background-color: #f8f9fa;
-            padding: 20px 0;
-            text-align: center; /* Center the button */
-            position: relative; /* For absolute positioning on smaller screens */
-        }
-
-        .whatsapp-button {
-            display: inline-block; /* Make the button a block element */
-            background-color: #25D366; /* WhatsApp Green */
-            color: white;
-            padding: 12px 25px; /* Slightly larger padding */
-            border-radius: 8px; /* More rounded corners */
+      .whatsapp-link {
+            color: #25D366; /* WhatsApp green color */
             text-decoration: none;
-            font-size: 18px; /* Slightly larger font size */
-            font-weight: 500; /* Semi-bold font weight */
-            transition: background-color 0.3s, transform 0.2s; /* Add transform transition */
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+            font-weight: bold;
         }
-
-        .whatsapp-button:hover {
-            background-color: #1DA851; /* Darker WhatsApp Green */
-            transform: scale(1.05); /* Scale up slightly on hover */
-            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3); /* More prominent shadow on hover */
-        }
-
-        /* Responsive adjustments for WhatsApp button */
-        @media (max-width: 768px) {
-            .whatsapp-button {
-                font-size: 16px; /* Adjust font size */
-                padding: 10px 20px; /* Adjust padding */
-                width: 90%; /* Make the button take up most of the screen width */
-                margin: 0 auto; /* Center horizontally */
-                display: block; /* Make it a block element */
+        @media (max-width: 600px) {
+          .container {
+                padding: 20px;
             }
         }
     </style>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("YOUR_EMAILJS_PUBLIC_KEY"); // Replace with your EmailJS Public Key
+        })();
+    </script>
 </head>
-
 <body>
-    <footer>
-        <a href="https://wa.me/250739121651" class="whatsapp-button" target="_blank">
-            <i class="fa fa-whatsapp"></i> Contact on WhatsApp
-        </a>
-    </footer>
-    
+    <div class="container">
+        <h1>Payment Confirmation</h1>
+        <p>Enter your phone number to proceed with payment:</p>
+        <input type="text" id="phoneNumber" placeholder="e.g., 250781234567">
+        <button id="payButton">Pay</button>
+    </div>
 
+    <div class="footer">
+        <p>Need help? Contact us on <a href="https://wa.me/250739121651" class="whatsapp-link" target="_blank">WhatsApp</a></p>
+    </div>
 
     <script>
-        function pay(method) {
-            let phoneNumber = document.getElementById(`${method}-number`).value;
-
-            if (!phoneNumber) {
-                alert(`Please enter your ${method.toUpperCase()} number.`);
-                return;
-            }
-
-
-            phoneNumber = phoneNumber.replace(/\D/g, ''); // Remove non-digits
-
-            const ussdCode = encodeURIComponent(`*182*1*${method === 'mtn' ? '2' : '1'}*0739121651#`);
-            window.location.href = `tel:${ussdCode}`;
-
-            document.getElementById('payment-checking').style.display = 'block';
-            startTimer();
-        }
-
-        // ... (rest of the JavaScript code remains the same)
+        document.getElementById('payButton').addEventListener('click', function() {
+            //... (rest of your JavaScript code)...
+        });
     </script>
-
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/slick.min.js"></script>
-    <script src="js/nouislider.min.js"></script>
-    <script src="js/jquery.zoom.min.js"></script>
-    <script src="js/main.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
 </body>
-
 </html>
