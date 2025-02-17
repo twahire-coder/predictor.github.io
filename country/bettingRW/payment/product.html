@@ -112,39 +112,38 @@
             payButton.classList.add('loading');
             payButton.disabled = true;
 
-            // Using fetch API as a simple email sending alternative (requires server-side setup)
-            fetch('https://your-server-endpoint/send-email', { // Replace with your server endpoint
+            // 1. Start PawaPay Session
+            fetch('https://api.sandbox.pawapay.io/api/v1/sessions', { // Use sandbox API endpoint
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': 'Bearer eyJraWQiOiIxIiwiYWxnIjoiRVMyNTYifQ', // Your provided API token
                 },
                 body: JSON.stringify({
                     phoneNumber: phoneNumber,
-                    toEmail: 'shimwaolivier7@gmail.com',
+                    currency: 'RWF', // Replace with your currency if different
+                    amount: 1000, // Replace with the amount
+                    returnUrl: 'YOUR_WEBSITE_RETURN_URL', // Replace with your return URL
+                    description: 'Product Payment', // Add a description
                 }),
             })
-            .then(response => response.json())
-            .then(data => {
-                payButton.classList.remove('loading');
-                payButton.disabled = false;
-                if (data.success) {
-                    alertPlaceholder.innerHTML = `
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            You have successfully requested your payment. Wait 2-50 minutes to confirm PIN or contact customer care.
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    `;
+          .then(response => response.json())
+          .then(data => {
+                if (data.success && data.redirectUrl) {
+                    // 2. Redirect to PawaPay Payment Page
+                    window.location.href = data.redirectUrl;
                 } else {
-                    alert("Email sending failed. Please try again.");
+                    console.error('Error starting PawaPay session:', data);
+                    payButton.classList.remove('loading');
+                    payButton.disabled = false;
+                    alert("Payment initiation failed. Please try again.");
                 }
             })
-            .catch(error => {
-                console.error('Error:', error);
+          .catch(error => {
+                console.error('Error initiating payment:', error);
                 payButton.classList.remove('loading');
                 payButton.disabled = false;
-                alert("Email sending failed. Please try again.");
+                alert("Payment initiation failed. Please try again.");
             });
         });
     </script>
@@ -153,4 +152,4 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-</html>
+</html
