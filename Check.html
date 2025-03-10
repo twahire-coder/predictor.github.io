@@ -148,7 +148,8 @@
 </head>
 <body>
     <div class="container">
-        <h2>Demo Aviator Predictor</h2>
+        <h2>Really Aviator Predictor</h2>
+        <h2>prediction meet 100% but the speed up </h2>
         <div id="prediction-container">
             <div id="prediction">--</div>
             <div class="circle-icon" id="odds-display"></div>
@@ -158,3 +159,63 @@
         </div>
         <button id="next-button" class="btn btn-primary">Next Odd</button>
   </div>
+    <div class="footer-bar">
+        <button class="btn btn-danger" onclick="window.location.href='index.html'">BACK</button>
+        <div class="timer" id="footer-timer">53:17</div>
+        <button class="btn btn-success whatsapp-button" onclick="window.open('https://wa.me/250725414412', '_blank')">Chat</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        const predictionElement = document.getElementById('prediction');
+        const loadingElement = document.querySelector('.loading');
+        const circleIcon = document.getElementById('odds-display');
+        const nextButton = document.getElementById('next-button');
+        const footerTimer = document.getElementById('footer-timer');
+
+        let currentOdd = 1.00;
+        let timeLeft = 53 * 60 + 17;
+
+        function generatePrediction() {
+            loadingElement.style.display = 'block';
+            circleIcon.style.opacity = 0;
+
+            setTimeout(() => {
+                let prediction = Math.random() * 1000;
+                prediction = parseFloat(prediction.toFixed(1.5));
+
+                currentOdd = parseFloat((Math.random() *2 ).toFixed(2));
+
+                predictionElement.textContent = prediction;
+                circleIcon.textContent = currentOdd + "X";
+                
+
+                loadingElement.style.display = 'none';
+            }, 2000);
+        }
+
+        generatePrediction();
+        setInterval(generatePrediction, 20000);
+
+        nextButton.addEventListener('click', () => {
+            alert("Moving to the next odd...");
+        });
+
+        function updateFooterTimer() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            footerTimer.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            timeLeft--;
+            if (timeLeft < 0) {
+                timeLeft = 0;
+                clearInterval(timerInterval);
+            }
+        }
+
+        updateFooterTimer();
+        const timerInterval = setInterval(updateFooterTimer, 1000);
+    </script>
+</body>
+</html>
