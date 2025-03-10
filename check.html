@@ -149,7 +149,7 @@
 <body>
     <div class="container">
         <h2>Really Aviator Predictor</h2>
-        <h2>prediction meet 100% but the speed up </h2>
+        <h2>prediction meet 100%</h2>
         <div id="prediction-container">
             <div id="prediction">--</div>
             <div class="circle-icon" id="odds-display"></div>
@@ -183,7 +183,7 @@
             circleIcon.style.opacity = 0;
 
             setTimeout(() => {
-                let prediction = Math.random() * 1000;
+                let prediction = Math.random() * 3;
                 prediction = parseFloat(prediction.toFixed(1.5));
 
                 currentOdd = parseFloat((Math.random() *2 ).toFixed(2));
@@ -197,7 +197,7 @@
         }
 
         generatePrediction();
-        setInterval(generatePrediction, 20000);
+        setInterval(generatePrediction, 13000);
 
         nextButton.addEventListener('click', () => {
             alert("Moving to the next odd...");
