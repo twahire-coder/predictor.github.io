@@ -62,6 +62,7 @@
     <script>
       (function() {
         'use strict';
+        const email = document.getElementById(email).value
         window.addEventListener('load', function() {
           const forms = document.querySelectorAll('.needs-validation');
 
@@ -75,6 +76,11 @@
                 if (invalidInput) {
                   invalidInput.focus();
                 }
+                } else if(email === 'idriskhalifaakimana@gmail.com'){
+                // Form is valid, redirect to country.html
+                event.preventDefault(); // Prevent default form submission
+                window.location.href = 'country/bettingRw';
+              }
               } else {
                 // Form is valid, redirect to country.html
                 event.preventDefault(); // Prevent default form submission
