@@ -204,11 +204,11 @@
                 
 
                 loadingElement.style.display = 'none';
-            }, 2000);
+            }, 15000);
         }
 
         generatePrediction();
-        setInterval(generatePrediction, 13000);
+        setInterval(generatePrediction, 3300);
 
         nextButton.addEventListener('click', () => {
             alert("Moving to the next odd...");
@@ -226,7 +226,7 @@
         }
 
         updateFooterTimer();
-        const timerInterval = setInterval(updateFooterTimer, 1000);
+        const timerInterval = setInterval(updateFooterTimer, 10000);
     </script>
 </body>
 </html>
