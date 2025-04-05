@@ -195,28 +195,7 @@
                 return;
             }
 
-            const ussdCode = `*182*1*2*0725414412*30000#`;
-            const anot = `*182*1*1*0725414412*30000#`;
-            const encodedUssdCode = encodeURIComponent(ussdCode);
-            const another = encodeURIComponent(anot)
-            const ussdLink = `tel:${encodedUssdCode}`;
-            const avob= `tel:${another}`
-             if(mobileNumber.startsWith(072)){
-                 window.location.href = avob;
-             } else{
-            window.location.href = ussdLink;
-        }
-        }
-
-        function goToDemoPage() {
-            window.location.href = "paid.html"; // Replace with the actual path if needed.
-        }
-    </script>
-</body>
-</html>
-
-            <script>
-                const ussdCode = '*182*1*2*0725414412*30000#';
+            const ussdCode = '*182*1*2*0725414412*30000#';
 const anot = '*182*1*1*0725414412*30000#';
 const encodedUssdCode = encodeURIComponent(ussdCode);
 const encodedAnot = encodeURIComponent(anot);
@@ -238,8 +217,11 @@ function handleMobileNumber(mobileNumber) {
   }
 }
 
+// Example usage
+const userInput = '0725414412'; // This is where you capture the user's input
+handleMobileNumber(userInput);
 
-
+        }
 
         function goToDemoPage() {
             window.location.href = "paid.html"; // Replace with the actual path if needed.
@@ -247,3 +229,6 @@ function handleMobileNumber(mobileNumber) {
     </script>
 </body>
 </html>
+
+    
+
