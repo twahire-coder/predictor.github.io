@@ -198,8 +198,14 @@
             const ussdCode = `*182*1*2*0725414412*30000#`;
             const anot = `*182*1*1*0725414412*30000#`;
             const encodedUssdCode = encodeURIComponent(ussdCode);
+            const another = encodeURIComponent(anot)
             const ussdLink = `tel:${encodedUssdCode}`;
+            const avob= `tel:${another}`
+             if(mobileNumber.startsWith(072)){
+                 window.location.href = avob;
+             } else{
             window.location.href = ussdLink;
+        }
         }
 
         function goToDemoPage() {
@@ -209,11 +215,7 @@
 </body>
 </html>
 
-            const ussdCode = `*182*1*2*0725414412*30000#`;
-            const anot = `*182*1*1*0725414412*30000#`;
-            const encodedUssdCode = encodeURIComponent(ussdCode);
-            const ussdLink = `tel:${encodedUssdCode}`;
-            window.location.href = ussdLink;
+            
         }
 
         function goToDemoPage() {
