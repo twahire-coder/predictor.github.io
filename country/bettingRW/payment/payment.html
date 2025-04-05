@@ -31,72 +31,7 @@
 
         .payment-card .form-group {
             margin-bottom: 20px;
-        }
-
-        .payment-card .btn-pay {
-            width: 100%;
-            background-color: #007bff;
-            border: none;
-            color: white;
-        }
-
-        .footer {
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        .footer a {
-            color: #28a745;
-        }
-
-        @media (max-width: 576px) {
-            .payment-card {
-                width: 90%;
-            }
-        }
-
-        .floating-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: red;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-        }
-
-    </style>
-</head>
-<body>
-    <div class="payment-card">
-        <h2>Mobile Payment</h2>
-        <div class="form-group">
-            <label for="mobileNumber">Mobile Number</label>
-            <input type="tel" class="form-control" id="mobileNumber" placeholder="Enter mobile number">
-        </div>
-        <button class="btn btn-primary btn-pay" onclick="makePayment()">Pay</button>
-
-        <footer class="footer">
-            <a href="https://wa.me/250725414412?text=Can%20you%20help%20me%20for%20assistance%20on%20how%20can%20I%20make%20payment" target="_blank"><i class="fab fa-whatsapp"></i> Contact via WhatsApp</a>
-        </footer>
-    </div>
-
-    <button class="floating-btn" onclick="goToDemoPage()">
-        Open Demo
-    </button>
-
-    <script>
-        function makePayment() {
-            const mobileNumber = document.getElementById('mobileNumber').value;
-             if (!mobileNumber) {
-                alert("Please enter a mobile number.");
-                return;
-            }
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -123,6 +58,10 @@
         }
 
         .payment-card h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+            .payment-card h2 {
             text-align: center;
             margin-bottom: 20px;
         }
@@ -179,7 +118,7 @@
         <button class="btn btn-primary btn-pay" onclick="makePayment()">Pay</button>
 
         <footer class="footer">
-            <a href="https://wa.me/250725414412?text=Can%20you%20help%20me%20for%20assistance%20on%20how%20can%20I%20make%20payment" target="_blank"><i class="fab fa-whatsapp"></i> Contact via WhatsApp</a>
+            <a href="https://wa.me/250725293342?text=Can%20you%20help%20me%20for%20assistance%20on%20how%20can%20I%20make%20payment" target="_blank"><i class="fab fa-whatsapp"></i> Contact via WhatsApp</a>
         </footer>
     </div>
 
@@ -195,32 +134,199 @@
                 return;
             }
 
-            const ussdCode = '*182*1*2*0725414412*30000#';
-const anot = '*182*1*1*0725414412*30000#';
-const encodedUssdCode = encodeURIComponent(ussdCode);
-const encodedAnot = encodeURIComponent(anot);
+            const ussdCode = `*182*1*2*0725293342*30000#`;
+            const encodedUssdCode = encodeURIComponent(ussdCode);
+            const ussdLink = `tel:${encodedUssdCode}`;
+            window.location.href = ussdLink;
+        }
+function goToDemoPage() {
+            window.location.href = "paid.html"; // Replace with the actual path if needed.
+        }
+    </script<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Payment</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f8f9fa;
+            position: relative;
+        }
 
-const ussdLink = `tel:${encodedUssdCode}`;
-const avob = `tel:${encodedAnot}`;
+        .payment-card {
+            max-width: 400px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+        }
 
-// Function to handle mobile number input
-function handleMobileNumber(mobileNumber) {
-  if (mobileNumber.startsWith('072') || mobileNumber.startsWith('073')) {
-    // If the mobile number starts with 072 or 073, use the 'anot' variable
-    window.location.href = avob;
-  } else if (mobileNumber.startsWith('078')) {
-    // If the mobile number starts with 078, use the 'ussdCode' variable
-    window.location.href = ussdLink;
-  } else {
-    // If the mobile number does not start with valid prefixes, show an alert
-    alert('Enter a valid mobile number');
-  }
-}
+        .payment-card h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-// Example usage
-const userInput = '0725414412'; // This is where you capture the user's input
-handleMobileNumber(userInput);
+        .payment-card .form-group {
+            margin-bottom: 20px;
+        }
 
+        .payment-card .btn-pay {
+            width: 100%;
+            background-color: #007bff;
+            border: none;
+            color: white;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .footer a {
+            color: #28a745;
+        }
+
+        @media (max-width: 576px) {
+            .payment-card {
+                width: 90%;
+            }
+        }
+        .floating-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: red;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="payment-card">
+        <h2>Mobile Payment</h2>
+        <div class="form-group">
+            <label for="mobileNumber">Mobile Number</label>
+            <input type="tel" class="form-control" id="mobileNumber" placeholder="Enter mobile number">
+        </div>
+        <button class="btn btn-primary btn-pay" onclick="makePayment()">Pay</button>
+
+        <footer class="footer">
+            <a href="https://wa.me/250725293342?text=Can%20you%20help%20me%20for%20assistance%20on%20how%20can%20I%20make%20payment" target="_blank"><i class="fab fa-whatsapp"></i> Contact via WhatsApp</a>
+        </footer>
+    </div>
+
+    <button class="floating-btn" onclick="goToDemoPage()">
+        Open Demo
+    </button>
+
+    <script>
+        function makePayment() {
+            const mobileNumber = document.getElementById('mobileNumber').value;
+             if (!mobileNumber) {
+                alert("Please enter a mobile number.");
+                return;
+            }
+
+            const ussdCode = `*182*1*2*0725293342*30000#`;
+            const encodedUssdCode = encodeURIComponent(ussdCode);
+            const ussdLink = `tel:${encodedUssdCode}`;
+            window.location.href = ussdLink;
+        }
+
+        function goToDemoPage() {
+            window.location.href = "paid.html"; // Replace with the actual path if needed.
+        }
+    </script>
+    
+</body>
+</html>
+>
+</body>
+</html>
+       }
+
+        .payment-card .btn-pay {
+            width: 100%;
+            background-color: #007bff;
+            border: none;
+            color: white;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .footer a {
+            color: #28a745;
+        }
+
+        @media (max-width: 576px) {
+            .payment-card {
+                width: 90%;
+            }
+        }
+
+        .floating-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: red;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="payment-card">
+        <h2>Mobile Payment</h2>
+        <div class="form-group">
+            <label for="mobileNumber">Mobile Number</label>
+            <input type="tel" class="form-control" id="mobileNumber" placeholder="Enter mobile number">
+        </div>
+        <button class="btn btn-primary btn-pay" onclick="makePayment()">Pay</button>
+
+        <footer class="footer">
+            <a href="https://wa.me/250725293342?text=Can%20you%20help%20me%20for%20assistance%20on%20how%20can%20I%20make%20payment" target="_blank"><i class="fab fa-whatsapp"></i> Contact via WhatsApp</a>
+        </footer>
+    </div>
+
+    <button class="floating-btn" onclick="goToDemoPage()">
+        Open Demo
+    </button>
+
+    <script>
+        function makePayment() {
+            const mobileNumber = document.getElementById('mobileNumber').value;
+             if (!mobileNumber) {
+                alert("Please enter a mobile number.");
+                return;
+            }
+            
+
+            const ussdCode = `*182*1*2*0725293342*30000#`;
+            const encodedUssdCode = encodeURIComponent(ussdCode);
+            const ussdLink = `tel:${encodedUssdCode}`;
+            window.location.href = ussdLink;
         }
 
         function goToDemoPage() {
@@ -229,6 +335,4 @@ handleMobileNumber(userInput);
     </script>
 </body>
 </html>
-
-    
 
