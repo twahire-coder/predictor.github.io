@@ -216,15 +216,30 @@
 </html>
 
             <script>
-                const ussdCode = `*182*1*2*0725414412*30000#`;
-            const anot = `*182*1*1*0725414412*30000#`;
-            const encodedUssdCode = encodeURIComponent(ussdCode);
-            const another = encodeURIComponent(anot)
-            const ussdLink = `tel:${encodedUssdCode}`;
-            const avob= `tel:${another}`
-             if(mobileNumber.startsWith(072)){
-                 window.location.href = avob;
-        }
+                const ussdCode = '*182*1*2*0725414412*30000#';
+const anot = '*182*1*1*0725414412*30000#';
+const encodedUssdCode = encodeURIComponent(ussdCode);
+const encodedAnot = encodeURIComponent(anot);
+
+const ussdLink = `tel:${encodedUssdCode}`;
+const avob = `tel:${encodedAnot}`;
+
+// Function to handle mobile number input
+function handleMobileNumber(mobileNumber) {
+  if (mobileNumber.startsWith('072') || mobileNumber.startsWith('073')) {
+    // If the mobile number starts with 072 or 073, use the 'anot' variable
+    window.location.href = avob;
+  } else if (mobileNumber.startsWith('078')) {
+    // If the mobile number starts with 078, use the 'ussdCode' variable
+    window.location.href = ussdLink;
+  } else {
+    // If the mobile number does not start with valid prefixes, show an alert
+    alert('Enter a valid mobile number');
+  }
+}
+
+
+
 
         function goToDemoPage() {
             window.location.href = "paid.html"; // Replace with the actual path if needed.
