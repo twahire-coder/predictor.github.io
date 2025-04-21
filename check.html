@@ -174,60 +174,79 @@
         <button class="btn btn-danger" onclick="window.location.href='index.html'">BACK</button>
         <div class="timer" id="footer-timer">53:17</div>
         <button class="btn btn-success whatsapp-button" onclick="window.open('https://wa.me/250725414412', '_blank')">Chat</button>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        const predictionElement = document.getElementById('prediction');
-        const loadingElement = document.querySelector('.loading');
-        const circleIcon = document.getElementById('odds-display');
-        const nextButton = document.getElementById('next-button');
-        const footerTimer = document.getElementById('footer-timer');
-
-        let currentOdd = 1.00;
-        let timeLeft = 53 * 60 + 17;
-
-        function generatePrediction() {
-            loadingElement.style.display = 'block';
-            circleIcon.style.opacity = 0;
-
-            setTimeout(() => {
-                let prediction = Math.random() * 10;
-                prediction = parseFloat(prediction.toFixed(1.5));
-
-                currentOdd = parseFloat((Math.random() *2 ).toFixed(2));
-
-                predictionElement.textContent = prediction;
-                circleIcon.textContent = currentOdd + "X";
-                
-
-                loadingElement.style.display = 'none';
-            }, 15000);
-        }
-
-        generatePrediction();
-        setInterval(generatePrediction, 15000);
-
-        nextButton.addEventListener('click', () => {
-            alert("Moving to the next odd...");
-        });
-
-        function updateFooterTimer() {
-            const minutes = Math.floor(timeLeft / 60);
-            const seconds = timeLeft % 60;
-            footerTimer.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-            timeLeft--;
-            if (timeLeft < 0) {
-                timeLeft = 0;
-                clearInterval(timerInterval);
+        <script>
+            const predictionElement = document.getElementById('prediction');
+            const loadingElement = document.querySelector('.loading');
+            const circleIcon = document.getElementById('odds-display');
+            const nextButton = document.getElementById('next-button');
+            const footerTimer = document.getElementById('footer-timer');
+        
+            let currentOdd = 1.00;
+            let timeLeft = 53 * 60 + 17;
+        
+            function generatePrediction() {
+                loadingElement.style.display = 'block';
+                circleIcon.style.opacity = 0;
+        
+                setTimeout(() => {
+                    // Generate the next prediction based on the previous odd
+                    let prediction = currentOdd + Math.random() * (2 - 0.5) + 0.5; // Increment by a random value between 0.5 and 2
+                    prediction = parseFloat(prediction.toFixed(2));
+        
+                    // Update the current odd
+                    currentOdd = prediction;
+        
+                    // Display the prediction and odd
+                    predictionElement.textContent = prediction + "X";
+                    circleIcon.textContent = prediction + "X";
+                    circleIcon.style.opacity = 1;
+        
+                    loadingElement.style.display = 'none';
+                }, 5000); // Simulate a 5-second loading time
             }
-        }
-
-        updateFooterTimer();
-        const timerInterval = setInterval(updateFooterTimer, 5500);
-    </script>
+        
+            generatePrediction();
+            setInterval(generatePrediction, 15000); // Generate a new prediction every 15 seconds
+        
+            nextButton.addEventListener('click', () => {
+                alert("Moving to the next odd...");
+            });
+        
+            function updateFooterTimer() {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                footerTimer.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                timeLeft--;
+                if (timeLeft < 0) {
+                    timeLeft = 0;
+                    clearInterval(timerInterval);
+                }
+            }
+        
+            updateFooterTimer();
+            const timerInterval = setInterval(updateFooterTimer, 1000);
+        </script>
+        
+        <style>
+            .loading img {
+                width: 50px;
+                height: 50px;
+                animation: rotate 1s linear infinite;
+            }
+        
+            @keyframes rotate {
+                from {
+                    transform: rotate(0deg);
+                }
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+        </style>
+        
+        <div class="loading">
+            <img src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/72x72/1f504.png" alt="Loading...">
+        </div>
 </body>
 </html>
 
