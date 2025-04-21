@@ -139,45 +139,22 @@
     </button>
 
     <!-- Add this modal structure inside the body -->
-<div class="custom-modal fade" id="customAlertModal" tabindex="-1" role="dialog" aria-labelledby="customAlertTitle" aria-hidden="true">
-    <div class="custom-modal-dialog modal-dialog-centered" role="document">
-        <div class="custom-modal-content">
-            <div class="custom-modal-header">
-                <h5 class="custom-modal-title" id="customAlertTitle">Notice</h5>
-                <button type="button" class="custom-close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="custom-modal-body" id="customAlertMessage">
-                <!-- Message will be dynamically inserted here -->
-            </div>
-            <div class="custom-modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 
 <script>
-    // Function to show the custom alert modal
-    function showCustomAlert(message) {
-        document.getElementById('customAlertMessage').innerText = message;
-        $('#customAlertModal').modal('show'); // Use Bootstrap's modal method to show the modal
-    }
-
     function makePayment() {
         const mobileNumber = document.getElementById('mobileNumber').value;
 
         // Validate if the mobile number is entered
         if (!mobileNumber) {
-            showCustomAlert("Please enter a mobile number.");
+            alert("Please enter a mobile number.");
             return;
         }
 
         // Validate the length of the mobile number
         if (mobileNumber.length >= 11) {
-            showCustomAlert("Mobile number should be less than 11 digits.");
+            alert("Mobile number should be less than 11 digits.");
             return;
         }
 
@@ -188,7 +165,7 @@
         } else if (mobileNumber.startsWith('078')) {
             ussdCode = `*182*1*2*${mobileNumber}#`;
         } else {
-            showCustomAlert("Invalid mobile number. It should start with 072, 073, or 078.");
+            alert("Invalid mobile number. It should start with 072, 073, or 078.");
             return;
         }
 
@@ -202,7 +179,7 @@
             window.location.href = ussdLink;
         } else {
             // Show an alert with instructions for laptop/desktop users
-            showCustomAlert(`To make a payment, dial the following USSD code on your phone: ${ussdCode}`);
+            alert(`To make a payment, dial the following USSD code on your phone: ${ussdCode}`);
         }
     }
 </script>
