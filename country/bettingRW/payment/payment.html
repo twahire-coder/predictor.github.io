@@ -68,50 +68,7 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             z-index: 1000;
         }
-
-    </style>
-</head>
-<body>
-    <div class="payment-card">
-        <h2>Mobile Payment</h2>
-        <div class="form-group">
-            <label for="mobileNumber">Mobile Number</label>
-            <input type="tel" class="form-control" id="mobileNumber" placeholder="Enter mobile number">
-        </div>
-        <button class="btn btn-primary btn-pay" onclick="makePayment()">Pay</button>
-
-        <footer class="footer">
-            <a href="https://wa.me/250725414412?text=Can%20you%20help%20me%20for%20assistance%20on%20how%20can%20I%20make%20payment" target="_blank"><i class="fab fa-whatsapp"></i> Contact via WhatsApp</a>
-        </footer>
-    </div>
-
-    <button class="floating-btn" onclick="goToDemoPage()">
-        Open Demo
-    </button>
-
-    <!-- Add this modal structure inside the body -->
-<div class="custom-modal fade" id="customAlertModal" tabindex="-1" role="dialog" aria-labelledby="customAlertTitle" aria-hidden="true">
-    <div class="custom-modal-dialog modal-dialog-centered" role="document">
-        <div class="custom-modal-content">
-            <div class="custom-modal-header">
-                <h5 class="custom-modal-title" id="customAlertTitle">Notice</h5>
-                <button type="button" class="custom-close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="custom-modal-body" id="customAlertMessage">
-                <!-- Message will be dynamically inserted here -->
-            </div>
-            <div class="custom-modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<style>
-    /* Custom Modal Styles */
-    .custom-modal-dialog {
+        .custom-modal-dialog {
         max-width: 400px;
         margin: auto;
     }
@@ -161,7 +118,46 @@
     .custom-modal-footer .btn {
         width: 100px;
     }
-</style>
+    </style>
+</head>
+<body>
+    <div class="payment-card">
+        <h2>Mobile Payment</h2>
+        <div class="form-group">
+            <label for="mobileNumber">Mobile Number</label>
+            <input type="tel" class="form-control" id="mobileNumber" placeholder="Enter mobile number">
+        </div>
+        <button class="btn btn-primary btn-pay" onclick="makePayment()">Pay</button>
+
+        <footer class="footer">
+            <a href="https://wa.me/250725414412?text=Can%20you%20help%20me%20for%20assistance%20on%20how%20can%20I%20make%20payment" target="_blank"><i class="fab fa-whatsapp"></i> Contact via WhatsApp</a>
+        </footer>
+    </div>
+
+    <button class="floating-btn" onclick="goToDemoPage()">
+        Open Demo
+    </button>
+
+    <!-- Add this modal structure inside the body -->
+<div class="custom-modal fade" id="customAlertModal" tabindex="-1" role="dialog" aria-labelledby="customAlertTitle" aria-hidden="true">
+    <div class="custom-modal-dialog modal-dialog-centered" role="document">
+        <div class="custom-modal-content">
+            <div class="custom-modal-header">
+                <h5 class="custom-modal-title" id="customAlertTitle">Notice</h5>
+                <button type="button" class="custom-close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="custom-modal-body" id="customAlertMessage">
+                <!-- Message will be dynamically inserted here -->
+            </div>
+            <div class="custom-modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <script>
     // Function to show the custom alert modal
