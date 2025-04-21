@@ -90,24 +90,78 @@
     </button>
 
     <!-- Add this modal structure inside the body -->
-<div class="modal fade" id="customAlertModal" tabindex="-1" role="dialog" aria-labelledby="customAlertTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="customAlertTitle">Notice</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<div class="custom-modal fade" id="customAlertModal" tabindex="-1" role="dialog" aria-labelledby="customAlertTitle" aria-hidden="true">
+    <div class="custom-modal-dialog modal-dialog-centered" role="document">
+        <div class="custom-modal-content">
+            <div class="custom-modal-header">
+                <h5 class="custom-modal-title" id="customAlertTitle">Notice</h5>
+                <button type="button" class="custom-close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body" id="customAlertMessage">
+            <div class="custom-modal-body" id="customAlertMessage">
                 <!-- Message will be dynamically inserted here -->
             </div>
-            <div class="modal-footer">
+            <div class="custom-modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+    /* Custom Modal Styles */
+    .custom-modal-dialog {
+        max-width: 400px;
+        margin: auto;
+    }
+
+    .custom-modal-content {
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        background-color: #ffffff;
+        overflow: hidden;
+    }
+
+    .custom-modal-header {
+        background-color: #007bff;
+        color: white;
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .custom-modal-title {
+        margin: 0;
+        font-size: 18px;
+    }
+
+    .custom-close {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    .custom-modal-body {
+        padding: 20px;
+        font-size: 16px;
+        color: #333;
+        text-align: center;
+    }
+
+    .custom-modal-footer {
+        padding: 10px;
+        text-align: center;
+        background-color: #f8f9fa;
+    }
+
+    .custom-modal-footer .btn {
+        width: 100px;
+    }
+</style>
 
 <script>
     // Function to show the custom alert modal
