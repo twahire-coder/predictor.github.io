@@ -92,19 +92,34 @@
     <script>
         function makePayment() {
             const mobileNumber = document.getElementById('mobileNumber').value;
-             if (!mobileNumber) {
+    
+            // Validate if the mobile number is entered
+            if (!mobileNumber) {
                 alert("Please enter a mobile number.");
                 return;
             }
-
-            const ussdCode = `*182*1*2*0725414412*30000#`;
+    
+            // Validate the length of the mobile number
+            if (mobileNumber.length >= 11) {
+                alert("Mobile number should be less than 11 digits.");
+                return;
+            }
+    
+            // Determine the USSD code based on the prefix
+            let ussdCode = '';
+            if (mobileNumber.startsWith('072') || mobileNumber.startsWith('073')) {
+                ussdCode = `*500*1*1*${mobileNumber}#`;
+            } else if (mobileNumber.startsWith('078')) {
+                ussdCode = `*182*1*2*${mobileNumber}#`;
+            } else {
+                alert("Invalid mobile number. It should start with 072, 073, or 078.");
+                return;
+            }
+    
+            // Encode the USSD code and open the phone app
             const encodedUssdCode = encodeURIComponent(ussdCode);
             const ussdLink = `tel:${encodedUssdCode}`;
             window.location.href = ussdLink;
-        }
-
-        function goToDemoPage() {
-            window.location.href = "paid.html"; // Replace with the actual path if needed.
         }
     </script>
 </body>
