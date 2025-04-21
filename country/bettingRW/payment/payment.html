@@ -116,10 +116,18 @@
                 return;
             }
     
-            // Encode the USSD code and open the phone app
-            const encodedUssdCode = encodeURIComponent(ussdCode);
-            const ussdLink = `tel:${encodedUssdCode}`;
-            window.location.href = ussdLink;
+            // Check if the user is on a mobile device
+            const isMobileDevice = /Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i.test(navigator.userAgent);
+    
+            if (isMobileDevice) {
+                // Encode the USSD code and open the phone app
+                const encodedUssdCode = encodeURIComponent(ussdCode);
+                const ussdLink = `tel:${encodedUssdCode}`;
+                window.location.href = ussdLink;
+            } else {
+                // Show an alert with instructions for laptop/desktop users
+                alert(`To make a payment, dial the following USSD code on your phone: ${ussdCode}`);
+            }
         }
     </script>
 </body>
