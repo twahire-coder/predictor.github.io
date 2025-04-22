@@ -190,8 +190,8 @@
         
                 setTimeout(() => {
                     // Generate the next prediction based on the previous odd
-                    let prediction = currentOdd + Math.random() * (2 - 0.5) + 0.5; // Increment by a random value between 0.5 and 2
-                    prediction = parseFloat(prediction.toFixed(2));
+                    let prediction = currentOdd + Math.random() * (1.5 - 0.5) + 0.2; // Increment by a random value between 0.5 and 2
+                    prediction = parseFloat(prediction.toFixed(1.5));
         
                     // Update the current odd
                     currentOdd = prediction;
