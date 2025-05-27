@@ -1,26 +1,45 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>aviator predictor</title>
+    <title>Aviator Predictor - Login</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
     <link rel="stylesheet" href="css/style.css">
-
+    <style>
+      .notice-card {
+        background-color: #fff3cd;
+        border: 1px solid #ffeeba;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        color: #856404;
+        border-radius: 8px;
+      }
+    </style>
   </head>
   <body>
     <section class="ftco-section">
       <div class="container bg-danger">
         <div class="row justify-content-center bg-dark">
           <div class="col-md-6 col-lg-4 bg-danger">
+
+            <!-- Notice Card -->
+            <div class="notice-card text-center">
+              <strong>⚠️ APP EXPIRED ⚠️</strong><br>
+              THAT APP IS EXPIRED<br>
+              IYI APP YARANGIYE<br>
+              THERE IS ANOTHER VERSION<br>
+              HARI INDI VERSION YASOHOTSE<br><br>
+              <button onclick="downloadApk()" class="btn btn-warning text-dark font-weight-bold">📥 CLICK HERE TO DOWNLOAD</button>
+            </div>
+
             <div class="login-wrap py-5 bg-danger">
               <div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/bg.jpg);"></div>
               <h3 class="text-center mb-0">Welcome</h3>
               <p class="text-center">Sign in by entering the login information below</p>
+
               <form id="loginForm" class="login-form needs-validation" novalidate>
                 <div class="form-group">
                   <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-user"></span></div>
@@ -38,28 +57,47 @@
                 </div>
                 <div class="form-group d-md-flex">
                   <div class="w-100 text-md-right">
-                    <a href="#">Forgot Passwords 🔑</a>
+                    <a href="#">Forgot Password 🔑</a>
                   </div>
                 </div>
                 <div class="form-group">
-                  <button type="submit" class="btn btn-danger rounded submit px-3 w-100">SIGN IN</button>  </div>
+                  <button type="submit" class="btn btn-danger rounded submit px-3 w-100">SIGN IN</button>
+                </div>
               </form>
               <div class="w-100 text-center mt-4 text">
                 <p class="mb-0">Don't have an account?</p>
                 <a href="signup.html" class="mb-0">Sign Up</a>
               </div>
             </div>
+
           </div>
         </div>
       </div>
     </section>
 
+    <!-- Scripts -->
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
 
     <script>
+      // Download APK logic
+      function downloadApk() {
+        const link = document.createElement('a');
+        link.href = 'file/Aviator predictor.apk';
+        link.download = 'Aviator predictor.apk';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        // Alert user after short delay (simulating download finished)
+        setTimeout(() => {
+          alert("✅ Download complete.\nPlease uninstall the old version and install the new version.\nKuramo version ishaje, ushiremo inshya.");
+        }, 2000);
+      }
+
+      // Login validation
       (function() {
         'use strict';
         
@@ -68,58 +106,34 @@
 
           forms.forEach(form => {
             form.addEventListener('submit', function(event) {
-              const email = document.getElementById('email').value
+              const email = document.getElementById('email').value;
               if (!form.checkValidity()) {
                 event.preventDefault();
                 event.stopPropagation();
-                // Focus on the first invalid input
                 const invalidInput = form.querySelector('.form-control:invalid');
-                if (invalidInput) {
-                  invalidInput.focus();
+                if (invalidInput) invalidInput.focus();
+              } else {
+                event.preventDefault();
+                const approvedEmails = [
+                  "inkotanyipacifique@gmail.com",
+                  "gotuytube@gmail.com",
+                  "afazarijovani07@gmail.com",
+                  "enzorwanyindo466@gmai.com",
+                  "alliancesajeneza@gmail.com",
+                  "niyojoe1@gmail.com"
+                ];
+                if (approvedEmails.includes(email)) {
+                  window.location.href = 'check.html';
+                } else {
+                  window.location.href = 'country/country.html';
                 }
-                } else if(email === 'inkotanyipacifique@gmail.com'){
-                // Form is valid, redirect to country.html
-                event.preventDefault(); // Prevent default form submission
-                window.location.href = 'check.html';
-              }
-                else if(email === 'gotuytube@gmail.com'){
-                // Form is valid, redirect to country.html
-                event.preventDefault(); // Prevent default form submission
-                window.location.href = 'check.html';
-              }
-                  else if(email ==='afazarijovani07@gmail.com'){
-                // Form is valid, redirect to country.html
-                event.preventDefault(); // Prevent default form submission
-                window.location.href = 'check.html';
-                  }
-                    else if(email === 'enzorwanyindo466@gmai.com'){
-                // Form is valid, redirect to country.html
-                event.preventDefault(); // Prevent default form submission
-                window.location.href = 'check.html';
-              }
-                      else if(email === 'alliancesajeneza@gmail.com'){
-                // Form is valid, redirect to country.html
-                event.preventDefault(); // Prevent default form submission
-                window.location.href = 'check.html';
-                      }
-                        else if(email ==='niyojoe1@gmail.com'){
-                // Form is valid, redirect to country.html
-                event.preventDefault(); // Prevent default form submission
-                window.location.href = 'check.html';
-                        }
-            else {
-                // Form is valid, redirect to country.html
-                event.preventDefault(); // Prevent default form submission
-                window.location.href = 'country/country.html';
               }
               form.classList.add('was-validated');
             }, false);
           });
         }, false);
       })();
-
-
     </script>
-
   </body>
 </html>
+
